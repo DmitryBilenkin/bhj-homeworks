@@ -6,7 +6,7 @@ const hidden_link = document.getElementById('hidden_link')
 let int = setInterval(() => {
     timer.textContent -=1;
     
-    if (timer.textContent === '0'){
+    if (timer.textContent === '55'){
         clearInterval(int);
         alert('Вы победили в конкурсе!');
     };

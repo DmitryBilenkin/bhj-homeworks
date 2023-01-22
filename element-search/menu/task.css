@@ -43,3 +43,8 @@ body {
   top: 100%;
   min-width: 100%;
 }
+
+.box {
+  width: 100%;
+  height: 100px;
+}
