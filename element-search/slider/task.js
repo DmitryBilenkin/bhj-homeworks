@@ -10,51 +10,49 @@ sliderItemArr.findIndex((elem, index) => {
         indOfActiveSlider = index;
     };
 });
-
 sliderDots[indOfActiveSlider].className = 'slider__dot slider__dot_active';
 // Таким образом установим индекс активного слайдера и точки, а также их изначальное отображение в зависимости от того, какой мы установим начальный активный слайд в HTML
 
-
-//Переключение стрелками
-arrowPrev.onclick = () => {   
+function showActiveSlide (ind){
     sliderItemArr[indOfActiveSlider].className = 'slider__item';
     sliderDots[indOfActiveSlider].className = 'slider__dot';
 
-    indOfActiveSlider--;
+    if(ind < indOfActiveSlider){
+        if(ind < 0){
+            ind = sliderItemArr.length - 1;
+        };
+    
+        sliderItemArr[ind].className = 'slider__item slider__item_active';
+        sliderDots[ind].className = 'slider__dot slider__dot_active';
 
-    if(indOfActiveSlider < 0){
-        indOfActiveSlider = sliderItemArr.length - 1;
+        return indOfActiveSlider = ind;
+
+    } else if(ind > indOfActiveSlider){
+        if(ind === (sliderItemArr.length)){
+                ind = 0;
+            };
+
+        sliderItemArr[ind].className = 'slider__item slider__item_active';
+        sliderDots[ind].className = 'slider__dot slider__dot_active';
+
+        return indOfActiveSlider = ind;
     };
+};
 
-    sliderItemArr[indOfActiveSlider].className = 'slider__item slider__item_active';
-    sliderDots[indOfActiveSlider].className = 'slider__dot slider__dot_active';
+//Переключение стрелками
+arrowPrev.onclick = () => {
+    showActiveSlide (indOfActiveSlider - 1);
 };
 
 arrowNext.onclick = () => {
-    sliderItemArr[indOfActiveSlider].className = 'slider__item';
-    sliderDots[indOfActiveSlider].className = 'slider__dot';
-
-    indOfActiveSlider++;
-
-    if(indOfActiveSlider === (sliderItemArr.length)){
-        indOfActiveSlider = 0;
-    };
-
-    sliderItemArr[indOfActiveSlider].className = 'slider__item slider__item_active';
-    sliderDots[indOfActiveSlider].className = 'slider__dot slider__dot_active';
+    showActiveSlide (indOfActiveSlider + 1);
 };
 
 //Переключение точками
-
 sliderDots.forEach((dot) => {    
     dot.onclick = () => {
-        sliderItemArr[indOfActiveSlider].className = 'slider__item';
-        sliderDots[indOfActiveSlider].className = 'slider__dot';    
-
-        indOfActiveSlider = sliderDots.indexOf(dot);
-
-        sliderItemArr[indOfActiveSlider].className = 'slider__item slider__item_active';
-        sliderDots[indOfActiveSlider].className = 'slider__dot slider__dot_active';
+        let indOfDot = sliderDots.indexOf(dot);
+        showActiveSlide (indOfDot);
     };
 });
 
