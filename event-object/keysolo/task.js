@@ -17,16 +17,12 @@ class Game {
   }
 
   registerEvents() {
-    let currSymb = this.currentSymbol.textContent;
-
     document.addEventListener('keydown', 
-      function(symb){    
-        if(currSymb === symb.key){   
-          // this.success();       
-          console.log('good')
+      (symb) => {    
+        if(this.currentSymbol.textContent === symb.key){   
+          this.success();        
         }else{
-          // this.fail();
-          console.log('fail');
+          this.fail();        
         }
       });
   };
