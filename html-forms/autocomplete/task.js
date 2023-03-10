@@ -68,7 +68,25 @@ class Autocomplete {
   }
 
   getMatches( text ) {
-    /*
+    const options = Array.from(this.input.options);
+
+    let optArr =[];
+
+    options.forEach((opt) => {
+      if(opt.textContent.includes(text)){
+        let optObjects = {
+          text: opt.textContent,
+          value: opt.value
+        };
+        
+        optArr.push(optObjects);        
+      }     
+    });
+    
+    return optArr
+ 
+    
+      /*
       TODO: этот метод нужно дописать
       text - фраза, которую вводят в поле поиска
       Метод должен вернуть массив.
@@ -81,13 +99,9 @@ class Autocomplete {
         value: 'Содержимое атрибута value'
       }
     */
-    return [
-      {
-        text: 'Чубакка',
-        value: '1'
-      }
-    ];
-  }
+   
+  
+}
 }
 
 new Autocomplete( document.querySelector( '.autocomplete' ));
