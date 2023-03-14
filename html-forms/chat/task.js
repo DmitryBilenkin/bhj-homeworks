@@ -15,7 +15,7 @@ let timeout = true;
 
 input.addEventListener('keydown',(btn)=>{
     if(btn.key === 'Enter'){
-        if(input.value){
+        if(input.value.trim()){
             //  Клиент:
             timeout = true;
 
