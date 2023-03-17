@@ -5,7 +5,7 @@ let tasksList = document.getElementById('tasks__list');
 
 
 btn.onclick = () => {
-    if(input.value){                       
+    if(input.value.trim()){                       
        tasksList.insertAdjacentHTML('beforeend',
        `<div class="task">
             <div class="task__title">${input.value}</div>
@@ -20,16 +20,5 @@ btn.onclick = () => {
     });
     
     form.reset();
-
+    return false
 }};
-
-form.addEventListener('submit', (f)=>{
-    f.preventDefault();
-});
-
-form.addEventListener('keydown',(key)=>{
-    if(key.code === 'Enter'){
-       btn.click;
-    };
-});
-
