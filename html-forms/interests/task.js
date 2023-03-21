@@ -10,26 +10,31 @@ interestChecks.forEach((intCheck) => {
 
             if(intCheck.checked){            
                 checkboxesInParent.forEach((chbxPrnt) => {
-                        chbxPrnt.checked = true;                   
+                        chbxPrnt.checked = true;                  
                 });
             } else {
                 checkboxesInParent.forEach((chbxPrnt) => {
-                    chbxPrnt.checked = false; 
+                    chbxPrnt.checked = false;  
+                 
                 });
             };
             
         } else {
             let intCheckInParentDiv = Array.from(parentIntCheck.querySelectorAll('.interest__check'));
             let allElementsChecked = intCheckInParentDiv.every((el) => el.checked);
+            let someElementsCheked = intCheckInParentDiv.some((el) => el.checked);
             let closestLiIterest = parentIntCheck.closest('.interest');
 
             if(allElementsChecked){      
                 closestLiIterest.querySelector('.interest__check').indeterminate = false;         
                closestLiIterest.querySelector('.interest__check').checked = true;
-            } else {
+            } else if(someElementsCheked){
                 closestLiIterest.querySelector('.interest__check').checked = false;
                 closestLiIterest.querySelector('.interest__check').indeterminate = true;
-            };
+            }else{
+                closestLiIterest.querySelector('.interest__check').indeterminate = false;
+
+            }
 
         };
     });
