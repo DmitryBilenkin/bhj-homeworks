@@ -5,20 +5,23 @@ let tasksList = document.getElementById('tasks__list');
 
 
 btn.onclick = () => {
+
     if(input.value.trim()){                       
-       tasksList.insertAdjacentHTML('beforeend',
+       tasksList.insertAdjacentHTML('afterbegin',
        `<div class="task">
             <div class="task__title">${input.value}</div>
             <a href="#" class="task__remove">&times;</a>
        </div>`);
 
-    let removeArr = Array.from(document.querySelectorAll('.task__remove'));
-    removeArr.forEach((rem)=>{
-        rem.addEventListener('click',()=>{
-            rem.closest('.task').remove();
-        });
+    let task = tasksList.querySelector('.task');
+    let remBtn = task.querySelector('.task__remove');
+
+    remBtn.addEventListener('click',()=>{
+        task.remove();
     });
     
-    form.reset();
-    return false
-}};
+    form.reset();   
+    };
+
+return false
+};
