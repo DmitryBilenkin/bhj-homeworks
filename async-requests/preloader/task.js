@@ -1,12 +1,11 @@
-let item = document.getElementById('items');
-let img = document.getElementById('loader');
+const item = document.getElementById('items');
+const img = document.getElementById('loader');
 
 let xhr = new XMLHttpRequest();
 
-xhr.addEventListener('readystatechange', ()=>{
-    if(xhr.readyState === xhr.DONE){
+xhr.onloadend = () => {
+    if(xhr.status === 200){
         img.classList.remove('loader_active');
-
         let valutes = xhr.response['response']['Valute'];
 
         for(let valute in valutes){            
@@ -27,8 +26,10 @@ xhr.addEventListener('readystatechange', ()=>{
                     </div>
                 </div>`);                  
         };
+    } else {
+        console.log(`Произошла ошибка (Код ошибки: ${xhr.status}, Текст ошибки: ${xhr.statusText}`)
     };
-});
+};
 
 xhr.open('GET', 'https://students.netoservices.ru/nestjs-backend/slow-get-courses');
 xhr.responseType = 'json';
